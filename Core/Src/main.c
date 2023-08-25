@@ -118,20 +118,31 @@ int main(void)
 	while (1)
 	{
 		HAL_ADC_Start(&hadc1);
+		
+		
 		HAL_ADC_PollForConversion(&hadc1,10);
 		adc_value = HAL_ADC_GetValue(&hadc1); 
 		adc_vol = adc_value*(vref/4096);
+		
 		mypid.ActualValue = adc_vol;
 		dac_vol = PID_realize(&mypid);
+		
 		dac_value = dac_vol*4096/vref;
 		HAL_DAC_SetValue(&hdac,DAC_CHANNEL_1,DAC_ALIGN_12B_R,dac_value);
-		printf("%f\r\n", dac_vol);
+		GPIOB->ODR = (u16)dac_value;
+		printf("%f\r\n", adc_vol);
 		HAL_Delay(10);
-		/* USER CODE END WHILE */
 		
-		/* USER CODE BEGIN 3 */
+		
+		
+		
+		
+		
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
 	}
-	/* USER CODE END 3 */
+  /* USER CODE END 3 */
 }
 
 /**

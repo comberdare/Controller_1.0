@@ -1,5 +1,6 @@
 --cpu Cortex-M3
 "controller_1.0\startup_stm32f103xe.o"
+"controller_1.0\pid.o"
 "controller_1.0\main.o"
 "controller_1.0\gpio.o"
 "controller_1.0\adc.o"
@@ -7,7 +8,6 @@
 "controller_1.0\usart.o"
 "controller_1.0\stm32f1xx_it.o"
 "controller_1.0\stm32f1xx_hal_msp.o"
-"controller_1.0\pid.o"
 "controller_1.0\stm32f1xx_hal_gpio_ex.o"
 "controller_1.0\stm32f1xx_hal_adc.o"
 "controller_1.0\stm32f1xx_hal_adc_ex.o"
