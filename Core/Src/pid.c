@@ -3,14 +3,14 @@
 
 
 void PID_init(pid_config *pid){
-    pid->SetValue = 0.0;		//##
+    pid->SetValue = 2.8;		//##
     pid->ActualValue = 0.0;
     pid->err = 0.0;
     pid->err_last = 0.0;
     pid->OutValue = 0.0;
     pid->integral = 0.0;
-    pid->Kp = 1.0;
-    pid->Ki = 0;         
+    pid->Kp = 0.5;
+    pid->Ki = 0.1;         
     pid->Kd = 0;
     pid->umax = 100;
     pid->umin = -100;

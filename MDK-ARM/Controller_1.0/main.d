@@ -34,4 +34,5 @@ controller_1.0\main.o: ../Core/Inc/adc.h
 controller_1.0\main.o: ../Core/Inc/dac.h
 controller_1.0\main.o: ../Core/Inc/usart.h
 controller_1.0\main.o: ../Core/Inc/gpio.h
+controller_1.0\main.o: H:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 controller_1.0\main.o: ../Core/Inc/pid.h

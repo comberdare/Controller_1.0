@@ -26,6 +26,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include "stdio.h"
 #include "pid.h"
 
 /* USER CODE END Includes */
@@ -66,7 +67,10 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+int fputc(int ch, FILE *f){
+    HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xffff);
+	return ch;
+}
 /* USER CODE END 0 */
 
 /**
@@ -107,6 +111,7 @@ int main(void)
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
 	
+	printf("test start\r\n");
 	HAL_DAC_Start(&hdac,DAC_CHANNEL_1);   //开启DAC通道1
 	HAL_DAC_SetValue(&hdac,DAC_CHANNEL_1,DAC_ALIGN_12B_R,0);  //设置初始值为0
 	
@@ -116,10 +121,12 @@ int main(void)
 		HAL_ADC_PollForConversion(&hadc1,10);
 		adc_value = HAL_ADC_GetValue(&hadc1); 
 		adc_vol = adc_value*(vref/4096);
-		mypid.SetValue = adc_vol;
+		mypid.ActualValue = adc_vol;
 		dac_vol = PID_realize(&mypid);
 		dac_value = dac_vol*4096/vref;
 		HAL_DAC_SetValue(&hdac,DAC_CHANNEL_1,DAC_ALIGN_12B_R,dac_value);
+		printf("%f\r\n", dac_vol);
+		HAL_Delay(10);
 		/* USER CODE END WHILE */
 		
 		/* USER CODE BEGIN 3 */
